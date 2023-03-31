@@ -6,7 +6,11 @@ protocol EmployeeDetailTableViewControllerDelegate: AnyObject {
 }
 
 class EmployeeDetailTableViewController: UITableViewController, UITextFieldDelegate {
-
+    
+    @IBOutlet var dobDatePicker: UIDatePicker!
+    let dobCellIndexPath = IndexPath(row: 1, section: 0)
+    let dobDatePickerCellIndexPath = IndexPath(row: 2, section: 0)
+    
     @IBOutlet var nameTextField: UITextField!
     @IBOutlet var dobLabel: UILabel!
     @IBOutlet var employeeTypeLabel: UILabel!
@@ -14,6 +18,25 @@ class EmployeeDetailTableViewController: UITableViewController, UITextFieldDeleg
     
     weak var delegate: EmployeeDetailTableViewControllerDelegate?
     var employee: Employee?
+    
+    var isEdittingBirthday: Bool = false {
+        didSet {
+            tableView.beginUpdates()
+            tableView.endUpdates()
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if (indexPath == dobDatePickerCellIndexPath) {
+            if isEdittingBirthday {
+                return dobDatePicker.frame.height
+            } else {
+                return 0.0
+            }
+        } else {
+                return UITableView.automaticDimension
+            }
+        }
     
     override func viewDidLoad() {
         super.viewDidLoad()
