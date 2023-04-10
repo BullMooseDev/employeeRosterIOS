@@ -18,6 +18,11 @@ class EmployeeDetailTableViewController: UITableViewController, UITextFieldDeleg
     
     weak var delegate: EmployeeDetailTableViewControllerDelegate?
     var employee: Employee?
+    private var selectedType: EmployeeType? {
+        didSet {
+            employeeTypeLabel.text = selectedType?.description
+        }
+    }
     
     var isEdittingBirthday: Bool = false {
         didSet {
@@ -27,16 +32,26 @@ class EmployeeDetailTableViewController: UITableViewController, UITextFieldDeleg
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if (indexPath == dobDatePickerCellIndexPath) {
-            if isEdittingBirthday {
-                return dobDatePicker.frame.height
-            } else {
-                return 0.0
-            }
+        if indexPath == dobDatePickerCellIndexPath {
+            return isEdittingBirthday ? 200 : 0
         } else {
-                return UITableView.automaticDimension
-            }
+            return UITableView.automaticDimension
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if indexPath == dobCellIndexPath {
+            isEdittingBirthday.toggle()
+            dobLabel.textColor = .label
+            dobLabel.text = dobDatePicker.date.formatted()
+        }
+    }
+    
+    @IBAction func datePickerValueChanged(_ sender: UIDatePicker) {
+        dobLabel.text = sender.date.formatted()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,16 +84,31 @@ class EmployeeDetailTableViewController: UITableViewController, UITextFieldDeleg
             return
         }
         
-        let employee = Employee(name: name, dateOfBirth: Date(), employeeType: .exempt)
+        let employee = Employee(name: name, dateOfBirth: Date(), employeeType: selectedType ?? .exempt)
         delegate?.employeeDetailTableViewController(self, didSave: employee)
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
         employee = nil
     }
-
+    
     @IBAction func nameTextFieldDidChange(_ sender: UITextField) {
         updateSaveButtonState()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destination = segue.destination as? EmployeeTypeTableViewController, segue.identifier == "employeeTypeSegue" else { return }
+        destination.delegate = self
+        destination.currentlySelectedType = selectedType
+    }
+    
+}
 
+extension EmployeeDetailTableViewController: EmployeeTypeTableViewControllerDelegate {
+    
+    func didSelectEmployeeType(_ type: EmployeeType) {
+        selectedType = type
+        tableView.reloadData()
+    }
+    
 }

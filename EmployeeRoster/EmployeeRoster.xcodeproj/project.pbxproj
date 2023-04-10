@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F79D86429E45411001D3A8C /* EmployeeTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F79D86329E45411001D3A8C /* EmployeeTypeTableViewController.swift */; };
 		18DE986223C405060071ACD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DE986123C405060071ACD3 /* AppDelegate.swift */; };
 		18DE986423C405060071ACD3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DE986323C405060071ACD3 /* SceneDelegate.swift */; };
 		18DE986923C405060071ACD3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18DE986723C405060071ACD3 /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F79D86329E45411001D3A8C /* EmployeeTypeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeTypeTableViewController.swift; sourceTree = "<group>"; };
 		18DE985E23C405060071ACD3 /* EmployeeRoster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmployeeRoster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18DE986123C405060071ACD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18DE986323C405060071ACD3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				18DE987923C406260071ACD3 /* Employee.swift */,
 				18DE987723C405540071ACD3 /* EmployeeDetailTableViewController.swift */,
 				18DE987523C405490071ACD3 /* EmployeeListTableViewController.swift */,
+				0F79D86329E45411001D3A8C /* EmployeeTypeTableViewController.swift */,
 				18DE986323C405060071ACD3 /* SceneDelegate.swift */,
 				18DE986A23C405070071ACD3 /* Assets.xcassets */,
 				18DE986C23C405070071ACD3 /* LaunchScreen.storyboard */,
@@ -144,6 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18DE987823C405550071ACD3 /* EmployeeDetailTableViewController.swift in Sources */,
+				0F79D86429E45411001D3A8C /* EmployeeTypeTableViewController.swift in Sources */,
 				18DE986223C405060071ACD3 /* AppDelegate.swift in Sources */,
 				18DE986423C405060071ACD3 /* SceneDelegate.swift in Sources */,
 				18DE987A23C406260071ACD3 /* Employee.swift in Sources */,
